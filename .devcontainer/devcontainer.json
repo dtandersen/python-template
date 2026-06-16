@@ -6,6 +6,10 @@
 		"dockerfile": "Dockerfile",
 		"context": "."
 	},
+	"runArgs": [
+		"--env-file",
+		".devcontainer/.env"
+	],
 	// https://containers.dev/features
 	"features": {
 		// https://github.com/devcontainers/features/tree/main/src/python
@@ -17,8 +21,7 @@
 			"version": "latest"
 		},
 		// https://github.com/devcontainer-community/devcontainer-features/tree/main/src/opencode.ai
-		"ghcr.io/devcontainer-community/devcontainer-features/opencode.ai:1":
-		{
+		"ghcr.io/devcontainer-community/devcontainer-features/opencode.ai:1": {
 			"version": "latest"
 		}
 	},
@@ -36,12 +39,13 @@
 			"target": "/home/vscode/.local/share/opencode/auth.json",
 			"type": "bind"
 		},
-			{
+		{
 			"source": "${localEnv:HOME}${localEnv:USERPROFILE}/.config/opencode",
 			"target": "/home/vscode/.config/opencode",
 			"type": "bind"
 		}
 	],
 	"remoteUser": "vscode",
-	"containerUser": "vscode"
+	"containerUser": "vscode",
+	"initializeCommand": "touch .devcontainer/.env"
 }
